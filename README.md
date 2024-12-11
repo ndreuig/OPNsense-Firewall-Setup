@@ -1,72 +1,6 @@
 # OPNsense Firewall Setup
 
 
-## Download OPNsense
-to download the OPNsense, we go to the official link of OPNsense https://opnsense.org/download/
-then we select Architechture: amd64, the image type dvd because we will use virtualbox, then we choose the closest loaction LeaseWeb in our case, then hit download
-
-after downloading, go to your downloads folder, then right click on the the downloaded file that is a winrar type, and click the right of the mouse, then click extract here
-after extracting the file, we are ready to setup or create the virtual machine in the virtual box.
-
-then we open virtual box, and we click on Tools from the sidebar and select New from the toolbar.
-
-enter name OPNsense Firewall, and for Folder, specify where you want the VM files to be saved.
-Select the ISO Image dropdown and click Other to locate and select the .iso file downloaded earlier.
-Choose the following settings:
-Type: BSD
-Version: FreeBSD (64-bit)
-
-Configure Resources
-RAM: Allocate at least 2 GB.
-CPU: Allocate 1 cores or more depending on your pc.
-Leave other settings as default.
-
-Configure Storage
-Create a virtual hard disk:
-Select Create a virtual hard disk now.
-Use the VDI (VirtualBox Disk Image) format.
-Choose Dynamically allocated storage.
-Set the size to at least 16 GB.
-Click Finish
-
-
-
-Network Configuration
-OPNsense requires at least two network adapters for WAN and LAN. Configure as follows:
-
-Adapter 1:
-
-Go to Network > Adapter 1.
-Tick Enable Network Adapter.
-Set Attached to: Bridged Network
-Expand Advanced:
-Set Adapter Type: Default
-Promiscuous Mode: Allow All
-
-Adapter 2:
-
-Go to Network > Adapter 2.
-Tick Enable Network Adapter.
-Set Attached to: Bridged Network
-For Name, enter LAN 0.
-Expand Advanced:
-Set Adapter Type: Default
-Promiscuous Mode: Allow All
-Click OK to save the changes.
-
-
-
-
-boot the machine opnsense firewall, then after it starts, Let it load automatically until it asks for login and password, login:root and password:opnsense.
-
-login:installer and password:opnsense to install it
-
-select your keyboard i selected german as it is my keymap, then continue, then select install ztf, then select stripe, then press space and then ok (enter), then press yes
-
-then you change you password, and then exit and reboot.
-
-
-
 **Downloading OPNsense**
 
 1. Go to the official OPNsense download link: https://opnsense.org/download/
@@ -148,15 +82,146 @@ then you change you password, and then exit and reboot.
 6. Change your password and exit.
 7. Reboot the machine.
 
-
+### remove iso
+Open VirtualBox and select the OPNsense virtual machine.
+Click on "Settings" (or press Ctrl+S).
+In the Settings window, click on the "Storage" tab.
+Under the "Controller: IDE" section, you should see the OPNsense ISO file listed.
+Click on the ISO file and then click on the "Remove disk from virtual drive" button (it looks like a minus sign).
+Confirm that you want to remove the disk by clicking "OK".
+Click "OK" again to close the Settings window.
 
 
 ## Determining the IP Address for OPNsense Firewall
 
 ### Understand the Existing Network Infrastructure
-        1. Identify the Current Subnet: Before assigning an IP address to the OPNsense firewall, it is essential to identify the existing subnet of the network. For example, if your network uses the 192.168.1.x range, ensure that the firewall's IP address is compatible with this subnet.
-        2. Check the Router's IP Address: Determine the IP address of the existing router (e.g., 192.168.1.1). This information will help you decide the appropriate IP address for the firewall.
+
+1. Identify the Current Subnet: Before assigning an IP address to the OPNsense firewall, it is essential to identify the existing subnet of the network. For example, if your network uses the 192.168.1.x range, ensure that the firewall's IP address is compatible with this subnet.
+
+2. Check the Router's IP Address: Determine the IP address of the existing router (e.g., 192.168.1.1). This information will help you decide the appropriate IP address for the firewall.
 
 ### Choose an Appropriate IP Address
-        1. Avoid Conflicts: Select an IP address for the OPNsense firewall that does not conflict with any existing devices on the network. For instance, if the router is at 192.168.1.1, you might choose 192.168.1.2 or another address that is not currently in use.
 
+1. Avoid Conflicts: Select an IP address for the OPNsense firewall that does not conflict with any existing devices on the network. For instance, if the router is at 192.168.1.1, you might choose 192.168.1.2 or another address that is not currently in use.
+
+
+
+Here's a rewritten version of the section with the explanation:
+
+## Assign WAN and LAN interfaces
+
+1. Login with the OPNsense default username and password:
+	* Username: root
+	* Password: opnsense
+2. Enter option 1 to assign the interfaces: 1 Assign interfaces
+3. Answer "No" to the following prompts:
+	* Do you want to configure LAGGs now? No
+	* Do you want to configure VLANs now? No
+4. After answering "No" to the above prompts, OPNsense will display a list of valid interfaces. To identify which interface corresponds to which network adapter, we need to match the MAC addresses.
+5. To do this, follow these steps:
+	* Go to the VirtualBox settings for the OPNsense virtual machine.
+	* Click on "Network" and then select "Adapter 1".
+	* Click on "Advanced" and look for the MAC address without colon separation (e.g., 080027111111).
+	* Note down the MAC address.
+6. Now, look at the list of valid interfaces displayed in the OPNsense command line. Find the interface that matches the MAC address you noted down in step 5. This interface corresponds to Adapter 1.
+7. Repeat steps 5-6 for Adapter 2 to find the corresponding interface.
+8. Enter the interface names for WAN and LAN:
+	* Enter the WAN interface name: em0 (this corresponds to Adapter 1)
+	* Enter the LAN interface name: em1 (this corresponds to Adapter 2)
+9. Enter the optional interface name - press [Enter] for none
+10. Confirm the interface assignments:
+	* Interfaces will be assigned as follows:
+		+ WAN -> em0
+		+ LAN -> em1
+11. Answer "Yes" to proceed.
+
+
+
+
+Here's a rewritten version of the section with LAN and WAN separate:
+
+## Configure WAN Interface IP Address
+
+1. Enter option 2 to Set interface IP address.
+2. Configure the WAN interface IP address:
+	* Answer "No" to Configure IPv4 address WAN interface via DHCP?
+	* Enter the new WAN IPv4 address: 192.168.1.13
+	* Enter the new WAN IPv4 subnet bit count (subnet mask): 24
+	* Leave the upstream gateway address blank (press [Enter] for none)
+3. Configure the WAN interface IPv6 address:
+	* Answer "No" to Configure IPv6 address WAN interface via DHCP6?
+	* Press [Enter] to leave the WAN IPv6 address blank
+4. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
+5. Answer "Yes" to generate a new self-signed web GUI certificate.
+6. Answer the prompt to restore web GUI access defaults.
+
+## Configure LAN Interface IP Address
+
+1. Enter option 1 to set the LAN interface IP address.
+2. Configure the LAN interface IP address:
+	* Answer "No" to Configure IPv4 address LAN interface via DHCP?
+	* Enter the new LAN IPv4 address: 192.168.1.12
+	* Enter the new LAN IPv4 subnet bit count (subnet mask): 24
+	* Leave the upstream gateway address blank (press [Enter] for none)
+3. Configure the LAN interface IPv6 address:
+	* Answer "No" to Configure IPv6 address LAN interface via DHCP6?
+	* Press [Enter] to leave the LAN IPv6 address blank
+4. Answer "No" to enable the DHCP server on LAN.
+5. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
+6. Answer "Yes" to generate a new self-signed web GUI certificate.
+7. Answer the prompt to restore web GUI access defaults.
+
+
+
+
+## OPNsense Initial Setup Wizard
+
+After configuring the WAN and LAN interfaces, you can now access the web GUI by opening the following URL in your web browser: https://192.168.1.12
+
+### Login to OPNsense
+
+* Login with the OPNsense default username and password:
+	+ Username: root
+	+ Password: opnsense
+
+### General Setup
+
+1. Click Next to start the setup wizard.
+
+### General Information
+
+1. Change the hostname (optional).
+2. Leave the other settings at the defaults.
+
+### Time Server Information
+
+1. Set the timezone.
+
+### Configure WAN Interface
+
+You can configure the WAN interface using either DHCP or a static IP address. For this setup, we will use DHCP, but if you have obtained the necessary IP addressing details from your Internet provider, you can also use a static IP address.
+
+#### Configure WAN Interface using DHCP
+
+1. Select DHCP as the configuration method.
+2. This is usually the default setting for most home broadband connections with a dynamic WAN IP address.
+
+#### Configure WAN Interface using Static IP Address (Optional)
+
+1. Select Static as the IPv4 configuration method.
+2. Enter your WAN IP address in CIDR format and upstream gateway IP address.
+3. You should obtain these IP addressing details from your Internet provider.
+4. Leave the other settings as the defaults.
+
+### Configure LAN Interface
+
+1. Set the LAN IP address to 192.168.1.12.
+2. Set the Subnet Mask to 24.
+
+### Set Root Password
+
+1. Change the root password.
+
+### Reload Configuration
+
+1. Click reload to apply the changes.
