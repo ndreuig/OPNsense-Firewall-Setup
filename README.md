@@ -147,3 +147,16 @@ then you change you password, and then exit and reboot.
 	* Press Yes.
 6. Change your password and exit.
 7. Reboot the machine.
+
+
+
+
+## Determining the IP Address for OPNsense Firewall
+
+### Understand the Existing Network Infrastructure
+        1. Identify the Current Subnet: Before assigning an IP address to the OPNsense firewall, it is essential to identify the existing subnet of the network. For example, if your network uses the 192.168.1.x range, ensure that the firewall's IP address is compatible with this subnet.
+        2. Check the Router's IP Address: Determine the IP address of the existing router (e.g., 192.168.1.1). This information will help you decide the appropriate IP address for the firewall.
+
+### Choose an Appropriate IP Address
+        1. Avoid Conflicts: Select an IP address for the OPNsense firewall that does not conflict with any existing devices on the network. For instance, if the router is at 192.168.1.1, you might choose 192.168.1.2 or another address that is not currently in use.
+
