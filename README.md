@@ -46,7 +46,7 @@
 	* Choose Dynamically allocated storage.
 	* Set the size to at least 16 GB.
 2. Click Finish.
-   ![Table 2](./screenshots/screenshot6.PNG)
+   ![Table 2](./screenshots/screenshot6.png)
 
 **Network Configuration**
 
@@ -68,7 +68,7 @@
 		+ Expand Advanced:
 			- Set Adapter Type: Default
 			- Promiscuous Mode: Allow All
-   	![Table 2](./screenshots/screenshot8.png)
+   	![Table 2](./screenshots/screenshot8.PNG)
 2. Click OK to save the changes.
 
 **Booting and Installing OPNsense**
@@ -94,7 +94,7 @@
 	  ![Table 2](./screenshots/screenshot15.png)
 6. Change your password and exit.
 7. Reboot the machine.
-   ![Table 2](./screenshots/screenshot16.png)
+   ![Table 2](./screenshots/screenshot16.PNG)
 ### remove iso
 Open VirtualBox and select the OPNsense virtual machine.
 Click on "Settings" (or press Ctrl+S).
@@ -139,14 +139,14 @@ Click "OK" again to close the Settings window.
 8. Enter the interface names for WAN and LAN:
 	* Enter the WAN interface name: em0 (this corresponds to Adapter 1)
 	* Enter the LAN interface name: em1 (this corresponds to Adapter 2)
-    ![Table 2](./screenshots/screenshot32.png)
+    ![Table 2](./screenshots/screenshot32.PNG)
 9. Enter the optional interface name - press [Enter] for none
 10. Confirm the interface assignments:
 	* Interfaces will be assigned as follows:
 		+ WAN -> em0
 		+ LAN -> em1
 11. Answer "Yes" to proceed.
-    ![Table 2](./screenshots/screenshot33.png)
+    ![Table 2](./screenshots/screenshot33.PNG)
 
 
 ## Configure WAN Interface IP Address
@@ -157,15 +157,15 @@ Click "OK" again to close the Settings window.
 	* Enter the new WAN IPv4 address: 192.168.1.13
 	* Enter the new WAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-	  ![Table 2](./screenshots/screenshot17.png)
+	  ![Table 2](./screenshots/screenshot17.PNG)
 3. Configure the WAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address WAN interface via DHCP6?
 	* Press [Enter] to leave the WAN IPv6 address blank
-	  ![Table 2](./screenshots/screenshot18.png)
+	  ![Table 2](./screenshots/screenshot18.PNG)
 4. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 5. Answer "Yes" to generate a new self-signed web GUI certificate.
 6. Answer the prompt to restore web GUI access defaults.
-   ![Table 2](./screenshots/screenshot19.png)
+   ![Table 2](./screenshots/screenshot19.PNG)
 
 ## Configure LAN Interface IP Address
 
@@ -175,16 +175,16 @@ Click "OK" again to close the Settings window.
 	* Enter the new LAN IPv4 address: 192.168.1.12
 	* Enter the new LAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-	  ![Table 2](./screenshots/screenshot20.png)
+	  ![Table 2](./screenshots/screenshot20.PNG)
 3. Configure the LAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address LAN interface via DHCP6?
 	* Press [Enter] to leave the LAN IPv6 address blank
-	  ![Table 2](./screenshots/screenshot21.png)
+	  ![Table 2](./screenshots/screenshot21.PNG)
 4. Answer "No" to enable the DHCP server on LAN.
 5. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 6. Answer "Yes" to generate a new self-signed web GUI certificate.
 7. Answer the prompt to restore web GUI access defaults.
-   ![Table 2](./screenshots/screenshot22.png)
+   ![Table 2](./screenshots/screenshot22.PNG)
 
 
 
