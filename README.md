@@ -139,13 +139,14 @@ Click "OK" again to close the Settings window.
 8. Enter the interface names for WAN and LAN:
 	* Enter the WAN interface name: em0 (this corresponds to Adapter 1)
 	* Enter the LAN interface name: em1 (this corresponds to Adapter 2)
+    ![Table 2](./screenshots/edr3.png)
 9. Enter the optional interface name - press [Enter] for none
 10. Confirm the interface assignments:
 	* Interfaces will be assigned as follows:
 		+ WAN -> em0
 		+ LAN -> em1
 11. Answer "Yes" to proceed.
-
+    ![Table 2](./screenshots/edr3.png)
 
 
 ## Configure WAN Interface IP Address
