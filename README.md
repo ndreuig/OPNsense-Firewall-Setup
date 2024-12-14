@@ -8,20 +8,20 @@
 	* Architecture: amd64
 	* Image type: dvd (for VirtualBox)
 	* Location: Choose the closest location (e.g., LeaseWeb)
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot1.png)
 3. Click Download and wait for the file to download.
 
 **Extracting the Downloaded File**
 
 1. Go to your downloads folder and right-click on the downloaded file (a .rar file).
 2. Click Extract Here to extract the contents.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot2.png)
 
 **Creating a Virtual Machine in VirtualBox**
 
 1. Open VirtualBox and click on Tools from the sidebar.
 2. Select New from the toolbar.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot3.png)
 3. Enter the following details:
 	* Name: OPNsense Firewall
 	* Folder: Specify where you want the VM files to be saved.
@@ -29,14 +29,14 @@
 5. Choose the following settings:
 	* Type: BSD
 	* Version: FreeBSD (64-bit)
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot4.png)
  
 **Configuring Resources**
 
 1. Allocate at least 2 GB of RAM.
 2. Allocate 1 core or more depending on your PC.
 3. Leave other settings as default.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot5.png)
 
 **Configuring Storage**
 
@@ -46,7 +46,7 @@
 	* Choose Dynamically allocated storage.
 	* Set the size to at least 16 GB.
 2. Click Finish.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot6.png)
 
 **Network Configuration**
 
@@ -58,7 +58,7 @@
 		+ Expand Advanced:
 			- Set Adapter Type: Default
 			- Promiscuous Mode: Allow All
-	![Table 2](./screenshots/edr3.png)
+	![Table 2](./screenshots/screenshot7.png)
 
  	* Adapter 2:
 		+ Go to Network > Adapter 2.
@@ -68,7 +68,7 @@
 		+ Expand Advanced:
 			- Set Adapter Type: Default
 			- Promiscuous Mode: Allow All
-   	![Table 2](./screenshots/edr3.png)
+   	![Table 2](./screenshots/screenshot8.png)
 2. Click OK to save the changes.
 
 **Booting and Installing OPNsense**
@@ -78,23 +78,23 @@
 3. Login with the following credentials to install OPNsense:
 	* Login: installer
 	* Password: opnsense
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot9.png)
 5. Follow the installation prompts:
 	* Select your keyboard layout (e.g., German).
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot10.png)
 	* Continue.
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot11.png)
 	* Select Install ZTF.
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot12.png)
 	* Select Stripe.
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot13.png)
 	* Press Space and then OK (Enter).
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot14.png)
 	* Press Yes.
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot15.png)
 6. Change your password and exit.
 7. Reboot the machine.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot16.png)
 ### remove iso
 Open VirtualBox and select the OPNsense virtual machine.
 Click on "Settings" (or press Ctrl+S).
@@ -123,7 +123,7 @@ Click "OK" again to close the Settings window.
 1. Login with the OPNsense default username and password:
 	* Username: root
 	* Password: opnsense
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot9.png)
 2. Enter option 1 to assign the interfaces: 1 Assign interfaces
 3. Answer "No" to the following prompts:
 	* Do you want to configure LAGGs now? N
@@ -139,14 +139,14 @@ Click "OK" again to close the Settings window.
 8. Enter the interface names for WAN and LAN:
 	* Enter the WAN interface name: em0 (this corresponds to Adapter 1)
 	* Enter the LAN interface name: em1 (this corresponds to Adapter 2)
-    ![Table 2](./screenshots/edr3.png)
+    ![Table 2](./screenshots/screenshot32.png)
 9. Enter the optional interface name - press [Enter] for none
 10. Confirm the interface assignments:
 	* Interfaces will be assigned as follows:
 		+ WAN -> em0
 		+ LAN -> em1
 11. Answer "Yes" to proceed.
-    ![Table 2](./screenshots/edr3.png)
+    ![Table 2](./screenshots/screenshot33.png)
 
 
 ## Configure WAN Interface IP Address
@@ -157,15 +157,15 @@ Click "OK" again to close the Settings window.
 	* Enter the new WAN IPv4 address: 192.168.1.13
 	* Enter the new WAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot17.png)
 3. Configure the WAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address WAN interface via DHCP6?
 	* Press [Enter] to leave the WAN IPv6 address blank
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot18.png)
 4. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 5. Answer "Yes" to generate a new self-signed web GUI certificate.
 6. Answer the prompt to restore web GUI access defaults.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot19.png)
 
 ## Configure LAN Interface IP Address
 
@@ -175,16 +175,16 @@ Click "OK" again to close the Settings window.
 	* Enter the new LAN IPv4 address: 192.168.1.12
 	* Enter the new LAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot20.png)
 3. Configure the LAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address LAN interface via DHCP6?
 	* Press [Enter] to leave the LAN IPv6 address blank
-	  ![Table 2](./screenshots/edr3.png)
+	  ![Table 2](./screenshots/screenshot21.png)
 4. Answer "No" to enable the DHCP server on LAN.
 5. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 6. Answer "Yes" to generate a new self-signed web GUI certificate.
 7. Answer the prompt to restore web GUI access defaults.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot22.png)
 
 
 
@@ -192,28 +192,28 @@ Click "OK" again to close the Settings window.
 
 After configuring the WAN and LAN interfaces, you can now access the web GUI by opening the following URL in your web browser: https://192.168.1.12
 
-![Table 2](./screenshots/edr3.png)
-![Table 2](./screenshots/edr3.png)
+![Table 2](./screenshots/screenshot23.png)
+![Table 2](./screenshots/screenshot24.png)
 
 ### Login to OPNsense
 
 * Login with the OPNsense default username and password:
 	+ Username: root
 	+ Password: opnsense
-  ![Table 2](./screenshots/edr3.png)
+  ![Table 2](./screenshots/screenshot9.png)
 ### General Setup
 
 1. Click Next to start the setup wizard.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot25.png)
 ### General Information
 
 1. Change the hostname (optional).
 2. Leave the other settings at the defaults.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot26.png)
 ### Time Server Information
 
 1. Set the timezone.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot27.png)
 ### Configure WAN Interface
 
 You can configure the WAN interface using either DHCP or a static IP address. For this setup, we will use DHCP, but if you have obtained the necessary IP addressing details from your Internet provider, you can also use a static IP address.
@@ -222,23 +222,23 @@ You can configure the WAN interface using either DHCP or a static IP address. Fo
 
 1. Select DHCP as the configuration method.
 2. This is usually the default setting for most home broadband connections with a dynamic WAN IP address.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot28.png)
 #### Configure WAN Interface using Static IP Address (Optional)
 
 1. Select Static as the IPv4 configuration method.
 2. Enter your WAN IP address in CIDR format and upstream gateway IP address.
 3. You should obtain these IP addressing details from your Internet provider.
 4. Leave the other settings as the defaults.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot29.png)
 ### Configure LAN Interface
 
 1. Set the LAN IP address to 192.168.1.12.
 2. Set the Subnet Mask to 24.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot30.png)
 ### Set Root Password
 
 1. Change the root password.
-   ![Table 2](./screenshots/edr3.png)
+   ![Table 2](./screenshots/screenshot31.png)
 ### Reload Configuration
 
 1. Click reload to apply the changes.
