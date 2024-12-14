@@ -46,7 +46,7 @@
 	* Choose Dynamically allocated storage.
 	* Set the size to at least 16 GB.
 2. Click Finish.
-   ![Table 2](./screenshots/screenshot6.png)
+   ![Table 2](./screenshots/screenshot6.PNG)
 
 **Network Configuration**
 
@@ -58,7 +58,7 @@
 		+ Expand Advanced:
 			- Set Adapter Type: Default
 			- Promiscuous Mode: Allow All
-	![Table 2](./screenshots/screenshot7.png)
+	![Table 2](./screenshots/screenshot7.PNG)
 
  	* Adapter 2:
 		+ Go to Network > Adapter 2.
