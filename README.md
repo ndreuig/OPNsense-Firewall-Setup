@@ -297,7 +297,7 @@ You can configure the WAN interface using either DHCP or a static IP address. Fo
 8. Leave all other settings at their default values
 9. Click "Save" to save the rule
 
-![Table 2](./screenshots/445rule.PNG)
+![Table 2](./screenshots/445rule.png)
 ![Table 2](./screenshots/screenshot35.png)
 ### Run an Nmap Scan to Verify the Rule
 1. Open the Nmap GUI application on your Windows machine
