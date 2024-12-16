@@ -1,7 +1,7 @@
 # OPNsense Firewall Setup
 
 
-**Downloading OPNsense**
+## Downloading OPNsense
 
 1. Go to the official OPNsense download link: https://opnsense.org/download/
 2. Select the following options:
@@ -13,14 +13,14 @@
 
 3. Click Download and wait for the file to download.
 
-**Extracting the Downloaded File**
+### Extracting the Downloaded File
 
 1. Go to your downloads folder and right-click on the downloaded file (a .rar file).
 2. Click Extract Here to extract the contents.
 
    ![Table 2](./screenshots/screenshot2.png)
 
-**Creating a Virtual Machine in VirtualBox**
+## Creating a Virtual Machine in VirtualBox
 
 1. Open VirtualBox and click on Tools from the sidebar.
 2. Select New from the toolbar.
@@ -37,7 +37,7 @@
 
    ![Table 2](./screenshots/screenshot4.png)
  
-**Configuring Resources**
+### Configuring Resources
 
 1. Allocate at least 2 GB of RAM.
 2. Allocate 1 core or more depending on your PC.
@@ -46,7 +46,7 @@
    ![Table 2](./screenshots/screenshot5.png)
 
 
-**Configuring Storage**
+### Configuring Storage
 
 1. Create a virtual hard disk:
 	* Select Create a virtual hard disk now.
@@ -58,33 +58,37 @@
    ![Table 2](./screenshots/screenshot6.png)
 
 
-**Network Configuration**
+### Network Configuration
 
 1. OPNsense requires at least two network adapters for WAN and LAN. Configure as follows:
 	* Adapter 1:
 		+ Go to Network > Adapter 1.
 		+ Tick Enable Network Adapter.
 		+ Set Attached to: Bridged Network
-		+ Expand Advanced:
-			- Set Adapter Type: Default
-			- Promiscuous Mode: Allow All
+		
 	
  	  ![Table 2](./screenshots/screenshot7.PNG)
 
  	* Adapter 2:
 		+ Go to Network > Adapter 2.
 		+ Tick Enable Network Adapter.
-		+ Set Attached to: Bridged Network
-		+ For Name, enter LAN 0.
-		+ Expand Advanced:
-			- Set Adapter Type: Default
-			- Promiscuous Mode: Allow All
+		+ Set Attached to: Internal 
+		+ For Name, enter intnet.
+		
 
 	  ![Table 2](./screenshots/screenshot8.PNG)
 
 2. Click OK to save the changes.
 
-**Booting and Installing OPNsense**
+3. Kali Linux Network Configuration
+   To connect your Kali Linux machine to the LAN network, follow these steps:
+   - Adapter 1:
+	   + Go to Network > Adapter 1.
+	   + Enable the network adapter by ticking the Enable Network Adapter checkbox.
+           + Set the adapter to connect to the internal network by selecting Internal from the Attached to dropdown menu.
+           + Name the adapter intnet.	
+
+## Booting and Installing OPNsense
 
 1. Boot the OPNsense Firewall machine.
 2. Let it load automatically until it asks for login and password.
@@ -123,34 +127,9 @@
 6. Reboot the machine.
 
    ![Table 2](./screenshots/screenshot16.PNG)
+   
 
-
-
-### remove iso
-Open VirtualBox and select the OPNsense virtual machine.
-Click on "Settings" (or press Ctrl+S).
-In the Settings window, click on the "Storage" tab.
-Under the "Controller: IDE" section, you should see the OPNsense ISO file listed.
-Click on the ISO file and then click on the "Remove disk from virtual drive" button (it looks like a minus sign).
-Confirm that you want to remove the disk by clicking "OK".
-Click "OK" again to close the Settings window.
-
-
-
-## Determining the IP Address for OPNsense Firewall
-
-### Understand the Existing Network Infrastructure
-
-1. Identify the Current Subnet: Before assigning an IP address to the OPNsense firewall, it is essential to identify the existing subnet of the network. For example, if your network uses the 192.168.1.x range, ensure that the firewall's IP address is compatible with this subnet.
-
-2. Check the Router's IP Address: Determine the IP address of the existing router (e.g., 192.168.1.1). This information will help you decide the appropriate IP address for the firewall.
-
-### Choose an Appropriate IP Address
-
-1. Avoid Conflicts: Select an IP address for the OPNsense firewall that does not conflict with any existing devices on the network. For instance, if the router is at 192.168.1.1, you might choose 192.168.1.2 or another address that is not currently in use.
-
-
-## Assign WAN and LAN interfaces
+### Assign WAN and LAN interfaces
 
 1. Login with the OPNsense default username and password:
 	* Username: root
@@ -186,7 +165,7 @@ Click "OK" again to close the Settings window.
     ![Table 2](./screenshots/screenshot33.PNG)
 
 
-## Configure WAN Interface IP Address
+### Configure WAN Interface IP Address
 
 1. Enter option 2 to Set interface IP address.
 2. Configure the WAN interface IP address:
@@ -210,12 +189,12 @@ Click "OK" again to close the Settings window.
    ![Table 2](./screenshots/screenshot19.PNG)
 
 
-## Configure LAN Interface IP Address
+### Configure LAN Interface IP Address
 
 1. Enter option 1 to set the LAN interface IP address.
 2. Configure the LAN interface IP address:
 	* Answer "No" to Configure IPv4 address LAN interface via DHCP?
-	* Enter the new LAN IPv4 address: 192.168.1.12
+	* Enter the new LAN IPv4 address: 192.168.1.1
 	* Enter the new LAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
 
