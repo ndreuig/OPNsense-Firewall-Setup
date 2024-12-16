@@ -165,59 +165,50 @@
     ![Table 2](./screenshots/screenshot33.PNG)
 
 
-### Configure WAN Interface IP Address
+### Configure WAN and LAN Interface IP Address
 
+**WAN**
 1. Enter option 2 to Set interface IP address.
 2. Configure the WAN interface IP address:
 	* Answer "No" to Configure IPv4 address WAN interface via DHCP?
-	* Enter the new WAN IPv4 address: 192.168.1.13
+	* Enter the new WAN IPv4 address: 192.168.1.4
 	* Enter the new WAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-
-	  ![Table 2](./screenshots/screenshot17.PNG)
    
 3. Configure the WAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address WAN interface via DHCP6?
 	* Press [Enter] to leave the WAN IPv6 address blank
 
-	  ![Table 2](./screenshots/screenshot18.PNG)
    
 4. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 5. Answer "Yes" to generate a new self-signed web GUI certificate.
 6. Answer the prompt to restore web GUI access defaults.
-   
-   ![Table 2](./screenshots/screenshot19.PNG)
 
-
-### Configure LAN Interface IP Address
-
+**LAN**
 1. Enter option 1 to set the LAN interface IP address.
 2. Configure the LAN interface IP address:
 	* Answer "No" to Configure IPv4 address LAN interface via DHCP?
 	* Enter the new LAN IPv4 address: 192.168.1.1
 	* Enter the new LAN IPv4 subnet bit count (subnet mask): 24
 	* Leave the upstream gateway address blank (press [Enter] for none)
-
-	  ![Table 2](./screenshots/screenshot20.PNG)
    
 3. Configure the LAN interface IPv6 address:
 	* Answer "No" to Configure IPv6 address LAN interface via DHCP6?
 	* Press [Enter] to leave the LAN IPv6 address blank
-
-	  ![Table 2](./screenshots/screenshot21.PNG)
    
 4. Answer "No" to enable the DHCP server on LAN.
 5. Answer "No" to change the web GUI protocol from HTTPS to HTTP.
 6. Answer "Yes" to generate a new self-signed web GUI certificate.
 7. Answer the prompt to restore web GUI access defaults.
    
-   ![Table 2](./screenshots/screenshot22.PNG)
-
+![Table 2](./screenshots/screenshot37.PNG)
 
 
 ## OPNsense Initial Setup Wizard
 
-After configuring the WAN and LAN interfaces, you can now access the web GUI by opening the following URL in your web browser: https://192.168.1.12
+After configuring the WAN and LAN interfaces, you can now access the web GUI by opening the following URL in your web browser within Kali Linux virtual machine:
+
+https://192.168.1.1
 
 ![Table 2](./screenshots/screenshot23.jpeg)
 ![Table 2](./screenshots/screenshot24.jpeg)
@@ -288,3 +279,42 @@ You can configure the WAN interface using either DHCP or a static IP address. Fo
 ### Reload Configuration
 
 1. Click reload to apply the changes.
+
+   ![Table 2](./screenshots/screenshot34.png)
+
+## Verifying OPNsense Configuration with Nmap: Blocking SMB Port 445
+
+### Create a Rule to Block SMB Port 445
+1. After setting up the general settings, navigate to the Firewall > Rules page
+2. Click the "Add" button to create a new rule
+3. Set the action to "Block"
+4. Set the protocol to TCP
+5. Set the source to "any"
+6. Set the destination to "any"
+7. Set the destination port to (other) from:445 to: 445
+8. Leave all other settings at their default values
+9. Click "Save" to save the rule
+
+![Table 2](./screenshots/screenshot36.PNG)
+![Table 2](./screenshots/screenshot35.PNG)
+### Run an Nmap Scan to Verify the Rule
+1. Open the Nmap GUI application on your Windows machine
+2. Type the following command in the "Command" field:
+```bash
+nmap -p 445 192.168.1.1
+```
+3. The "Target" field will automatically fill with the IP address (192.168.1.12)
+4. Click the "Scan" button to start the scan
+5. Look for the output to verify that port 445 is closed or blocked.
+
+**Expected Output:**
+
+Port 445 should be listed as "closed" or "filtered" in the Nmap output, indicating that the rule is working as expected.
+
+**Actual Output:**
+
+![Table 2](./screenshots/nmap.PNG)
+
+**Conclusion:**
+
+The OPNsense configuration has been successfully verified using Nmap, and the rule to block SMB port 445 is working as expected.
