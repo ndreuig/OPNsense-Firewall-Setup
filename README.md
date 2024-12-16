@@ -1,5 +1,8 @@
 # OPNsense Firewall Setup
 
+This project was about setting up an OPNsense firewall to secure a network. The steps included installing the firewall in VirtualBox, setting up WAN and LAN interfaces, and assigning IP addresses. A firewall rule was created to control traffic, and it was tested using Nmap to make sure everything worked as expected.
+
+
 
 ## Downloading OPNsense
 
