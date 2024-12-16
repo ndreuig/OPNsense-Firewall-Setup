@@ -76,7 +76,7 @@
 		+ For Name, enter intnet.
 		
 
-	  ![Table 2](./screenshots/screenshot8.PNG)
+	  ![Table 2](./screenshots/internalnet.PNG)
 
 2. Click OK to save the changes.
 
@@ -86,7 +86,9 @@
 	   + Go to Network > Adapter 1.
 	   + Enable the network adapter by ticking the Enable Network Adapter checkbox.
            + Set the adapter to connect to the internal network by selecting Internal from the Attached to dropdown menu.
-           + Name the adapter intnet.	
+           + Name the adapter intnet.
+             
+     ![Table 2](./screenshots/internalnet.PNG)
 
 ## Booting and Installing OPNsense
 
@@ -201,7 +203,7 @@
 6. Answer "Yes" to generate a new self-signed web GUI certificate.
 7. Answer the prompt to restore web GUI access defaults.
    
-![Table 2](./screenshots/screenshot37.PNG)
+![Table 2](./screenshots/newips.PNG)
 
 
 ## OPNsense Initial Setup Wizard
@@ -296,7 +298,7 @@ You can configure the WAN interface using either DHCP or a static IP address. Fo
 9. Click "Save" to save the rule
 
 ![Table 2](./screenshots/screenshot36.PNG)
-![Table 2](./screenshots/screenshot35.PNG)
+![Table 2](./screenshots/screenshot35.png)
 ### Run an Nmap Scan to Verify the Rule
 1. Open the Nmap GUI application on your Windows machine
 2. Type the following command in the "Command" field:
